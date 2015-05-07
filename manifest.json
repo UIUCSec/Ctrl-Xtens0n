@@ -27,7 +27,8 @@
     "webRequest",
     "webRequestBlocking",
     "webNavigation",
-    "<all_urls>"
+    "<all_urls>",
+    "activeTab"
   ]
 }
 

@@ -52,7 +52,7 @@ port = 8001
 backlog = 5 
 size = 1024 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
-s.bind((socket.gethostname(),port)) 
+s.bind(('localhost',port)) 
 print 'Socket has been bound'
 s.listen(backlog) 
 print 'Socket is listening'
@@ -62,6 +62,7 @@ while 1:
         data = client.recv(size) 
         if data: 
             print 'Recieved ' + data
-            client.send('TEST RESPONSE') 
+            color = str(raw_input("What Color? "))
+            client.send(color.lower()) 
             client.close()
             break

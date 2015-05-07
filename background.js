@@ -1,19 +1,34 @@
-var blockedlist = ["twitter.com", "yahoo.com"]
+var blockedlist = []
 
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
-		if (details.url.indexOf('sifaka') > 0){
+			var url = details.url
 	    	var server = 'http://localhost:8001'
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
 			    if (xhr.readyState == 4) {
-			        alert(xhr.responseText);
+			        if (xhr.responseText == "red" || xhr.responseText == "blue" || xhr.responseText == "green" || xhr.responseText == "yellow"){
+			        	console.log('document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\"")
+			        	chrome.tabs.executeScript({
+    						code: 'document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\""
+  						});
+			        }
 			    }
 			}
 			xhr.open("GET", server ,true);
-			xhr.setRequestHeader('Content-Type', 'Chrome Message Test');
+			xhr.setRequestHeader('Content-Type', url);
 			xhr.send();
-		}
        	},
     {urls: ["<all_urls>"]},
     ["blocking"]);
+
+
+function checkIfBlocked(curr_url){
+	var check = false;
+	for (var i in blockedlist){
+		if (curr_url.indexOf(blockedlist[i]) > -1)
+			console.log(blockedlist[i])
+			check = true;
+	}
+	return check;
+}
