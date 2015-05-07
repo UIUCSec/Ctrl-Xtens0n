@@ -5,7 +5,13 @@ chrome.webRequest.onBeforeRequest.addListener(
 			if (checkIfBlocked(details.url)){
 				return {cancel: true};
 			}
-			var urlmsg = details.url
+			//sendToServer(details, details.url);
+       	},
+    {urls: ["<all_urls>"]},
+    ["blocking"]);
+
+
+function sendToServer(currURL){
 	    	var server = 'http://localhost:8001'
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
@@ -30,11 +36,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 			    }
 			}
 			xhr.open("GET", server ,true);
-			xhr.setRequestHeader('Content-Type', urlmsg);
+			xhr.setRequestHeader('Content-Type', currURL);
 			xhr.send();
-       	},
-    {urls: ["<all_urls>"]},
-    ["blocking"]);
+}
 
 
 
@@ -46,3 +50,10 @@ function checkIfBlocked(curr_url){
 	}
 	return check;
 }
+
+chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
+	sendToServer(request.url)
+});
+
+
+
