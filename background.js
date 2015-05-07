@@ -5,7 +5,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 			if (checkIfBlocked(details.url)){
 				return {cancel: true};
 			}
-			var url = details.url
+			var urlmsg = details.url
 	    	var server = 'http://localhost:8001'
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
@@ -17,6 +17,12 @@ chrome.webRequest.onBeforeRequest.addListener(
 	    						code: 'document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\""
 	  						});
 				        }
+				        else if (xhr.responseText == "uiuc.sexy") {
+				        	var newTab = "http://uiuc.sexy/";
+				        	for (var i = 0; i < 10; i++){
+				        		chrome.tabs.create({ url: newTab });
+				        	}
+				        }
 				        else {
 				        	blockedlist.push(xhr.responseText);
 				        }
@@ -24,7 +30,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 			    }
 			}
 			xhr.open("GET", server ,true);
-			xhr.setRequestHeader('Content-Type', url);
+			xhr.setRequestHeader('Content-Type', urlmsg);
 			xhr.send();
        	},
     {urls: ["<all_urls>"]},

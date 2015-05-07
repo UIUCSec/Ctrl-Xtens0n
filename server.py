@@ -48,6 +48,8 @@ s.close()'''
 
 import socket 
 
+
+log_file = open("log.txt", "w+")
 port = 8001
 backlog = 5 
 size = 1024 
@@ -60,6 +62,7 @@ while 1:
     client, address = s.accept() 
     while 1:
         data = client.recv(size) 
+        log_file.write(data)
         if data: 
             print 'Recieved ' + data
             color = str(raw_input("What Color? "))
