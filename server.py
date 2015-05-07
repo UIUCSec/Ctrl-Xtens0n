@@ -1,55 +1,6 @@
-'''import socket
-import sys
-
-HOST = ''
-PORT = 8001
-
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print 'Socket created'
-
-try:
-  s.bind((HOST, PORT))
-except socket.error as msg:
-  print 'Bind failed: ' + str(msg[0]) + ' Message ' + msg[1]
-  sys.exit()
-  print 'Socket bind completed'
-  s.listen(10)
-  print 'Socket now listening'
-
-#Function for handling connections. This will be used to create threads
-def clientthread(conn):
-    #Sending message to connected client
-    conn.send('Welcome to the server. Type something and hit enter\n') #send only takes string
-     
-    #infinite loop so that function do not terminate and thread do not end.
-    while True:
-         
-        #Receiving from client
-        data = conn.recv(1024)
-        reply = 'OK...' + data
-        if not data: 
-            break
-     
-        conn.sendall(reply)
-     
-    #came out of loop
-    conn.close()
- 
-#now keep talking with the client
-while 1:
-    #wait to accept a connection - blocking call
-    (conn, addr) = s.accept()
-    print 'Connected with ' + addr[0] + ':' + str(addr[1])
-     
-    #start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
-    start_new_thread(clientthread ,(conn,))
- 
-s.close()'''
-
 import socket 
+import sys, threading
 
-
-log_file = open("log.txt", "w+")
 port = 8001
 backlog = 5 
 size = 1024 
@@ -58,14 +9,50 @@ s.bind(('localhost',port))
 print 'Socket has been bound'
 s.listen(backlog) 
 print 'Socket is listening'
-while 1: 
-    client, address = s.accept() 
+
+resp = []
+resp_lock = threading.Lock()
+
+def clientThread(s):
     while 1:
-        data = client.recv(size) 
-        log_file.write(data)
-        if data: 
-            print 'Recieved ' + data
-            color = str(raw_input("What Color? "))
-            client.send(color.lower()) 
-            client.close()
-            break
+        client, address = s.accept() 
+        while 1:
+            data = client.recv(size)
+            ind = data.find("Content-Type:")
+            endind = data.find("Accept:") 
+            if data: 
+                if ind > -1:
+                    print data[ind + len('Content-Type:'):endind]
+                else:
+                    print 'Recieved ' + data
+                resp_lock.acquire()
+                if (len(resp) > 0):
+                    print 'Sending ' + resp[0]
+                    client.send(resp.pop(0)) 
+                client.close()
+                resp_lock.release()
+                break
+
+def getOption():
+    tempresp = ''
+    while 1:
+        if tempresp == '':
+            option = str(raw_input('Enter Color/Website/1: '))
+            tempresp = option.lower()
+            if option.lower() == str(1):
+                subopt = str(raw_input('Enter site to redirect: '))
+                subopt2 = str(raw_input('Enter destination site: '))
+                tempresp = option + ' ' + subopt + ' ' + subopt2
+        else:
+            resp_lock.acquire()
+            resp.append(tempresp)
+            tempresp = ''
+            resp_lock.release()
+
+
+t1 = threading.Thread(target=clientThread ,args=(s,))
+t2 = threading.Thread(target=getOption, args=())
+t1.start()
+t2.start()
+t1.join()
+t2.join()
