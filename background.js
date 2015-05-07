@@ -1,4 +1,4 @@
-var blockedlist = []
+var blockedlist = ["twitter.com", "yahoo.com"]
 
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
@@ -21,14 +21,3 @@ chrome.webRequest.onBeforeRequest.addListener(
        	},
     {urls: ["<all_urls>"]},
     ["blocking"]);
-
-
-function checkIfBlocked(curr_url){
-	var check = false;
-	for (var i in blockedlist){
-		if (curr_url.indexOf(blockedlist[i]) > -1)
-			console.log(blockedlist[i])
-			check = true;
-	}
-	return check;
-}
