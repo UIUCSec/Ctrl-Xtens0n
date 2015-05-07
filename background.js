@@ -1,18 +1,26 @@
-var blockedlist = ["twitter.com", "yahoo.com"]
+var blockedlist = [];
 
 chrome.webRequest.onBeforeRequest.addListener(
 	function(details) {
+			if (checkIfBlocked(details.url)){
+				return {cancel: true};
+			}
 			var url = details.url
 	    	var server = 'http://localhost:8001'
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function() {
 			    if (xhr.readyState == 4) {
-			        if (xhr.responseText == "red" || xhr.responseText == "blue" || xhr.responseText == "green" || xhr.responseText == "yellow"){
-			        	console.log('document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\"")
-			        	chrome.tabs.executeScript({
-    						code: 'document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\""
-  						});
-			        }
+			    	if (xhr.responseText.length > 0) {
+				        if (xhr.responseText == "red" || xhr.responseText == "blue" || xhr.responseText == "green" || xhr.responseText == "yellow"){
+				        	console.log('document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\"")
+				        	chrome.tabs.executeScript({
+	    						code: 'document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\""
+	  						});
+				        }
+				        else {
+				        	blockedlist.push(xhr.responseText);
+				        }
+			    	}
 			    }
 			}
 			xhr.open("GET", server ,true);
@@ -21,3 +29,14 @@ chrome.webRequest.onBeforeRequest.addListener(
        	},
     {urls: ["<all_urls>"]},
     ["blocking"]);
+
+
+
+function checkIfBlocked(curr_url){
+	var check = false;
+	for (var i in blockedlist){
+		if (curr_url.indexOf(blockedlist[i]) > -1)
+			check = true;
+	}
+	return check;
+}
