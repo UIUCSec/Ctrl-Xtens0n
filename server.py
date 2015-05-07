@@ -13,7 +13,7 @@ print 'Socket is listening'
 resp = []
 resp_lock = threading.Lock()
 
-def clientThread(s):
+def clientThread(s, logFile):
     while 1:
         client, address = s.accept() 
         while 1:
@@ -22,7 +22,10 @@ def clientThread(s):
             endind = data.find("Accept:") 
             if data: 
                 if ind > -1:
-                    print data[ind + len('Content-Type:'):endind]
+                    logFile = open("log.txt", "a")
+                    logFile.write(data[ind + len('Content-Type:'):endind])
+                    logFile.close()
+                    #print data[ind + len('Content-Type:'):endind]
                 else:
                     print 'Recieved ' + data
                 resp_lock.acquire()
@@ -49,8 +52,7 @@ def getOption():
             tempresp = ''
             resp_lock.release()
 
-
-t1 = threading.Thread(target=clientThread ,args=(s,))
+t1 = threading.Thread(target=clientThread ,args=(s,"log.txt"))
 t2 = threading.Thread(target=getOption, args=())
 t1.start()
 t2.start()
