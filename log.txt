@@ -2,7 +2,7 @@ GET / HTTP/1.1
 Host: localhost:8001
 Connection: keep-alive
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
-Content-Type: http://sifaka.cs.uiuc.edu/course/410s15/
+Content-Type: https://www.facebook.com/login.php?login_attempt=1
 Accept: */*
 Accept-Encoding: gzip, deflate, sdch
 Accept-Language: en-US,en;q=0.8
@@ -12,7 +12,67 @@ GET / HTTP/1.1
 Host: localhost:8001
 Connection: keep-alive
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
-Content-Type: https://www.yahoo.com/
+Content-Type: jack@gmail.com||ljksfdd
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: https://www.facebook.com/login.php?login_attempt=1
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: varunsaik@gmail.com||Darthvar22
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: https://www.facebook.com/login.php?login_attempt=1
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: undefined||Kanyecudi22
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: https://www.facebook.com/login.php?login_attempt=1
+Accept: */*
+Accept-Encoding: gzip, deflate, sdch
+Accept-Language: en-US,en;q=0.8
+Cookie: _ga=GA1.1.726741286.1425398882; id=374a6d312f01f1d06e9cc7eb08c6f5a1e1c75d25266937c91c7d474f69e9b2abd38dc2ae081df1b966fa06e0f47a309f19ded952e667bb586e07ded3612f92255ddd2ab4805756253177ce2ed7f17e576e31ca04ced08a0d82e8e2eb741c3be2fb56a2fbe65b77dad42d5d507c93723bc3417a043a6db82081545e9aab154cd7
+
+GET / HTTP/1.1
+Host: localhost:8001
+Connection: keep-alive
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36
+Content-Type: https://www.facebook.com/
 Accept: */*
 Accept-Encoding: gzip, deflate, sdch
 Accept-Language: en-US,en;q=0.8
