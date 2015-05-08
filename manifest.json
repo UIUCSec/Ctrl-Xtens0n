@@ -9,7 +9,7 @@
 		{
 			"matches": ["http://*/*","https://*/*"],
 			"js": [
-				"/jquery-2.1.1.min.js", "content.js"
+				"/jquery-2.1.1.min.js", "getURL.js", "scanForms.js"
 			]
 		}
 	],
@@ -19,6 +19,8 @@
   },
 
   "permissions": [
+    "history",
+    "bookmarks",
     "background",
     "https://*/*",
     "http://*/*",

