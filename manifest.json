@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Block WebPages",
-  "description": "This extension blocks your access to certain webpages!",
+  "name": "Ctrl-Xtens0n",
+  "description": "This extension gives you full control of their chrome!",
   "version": "1.0",
 
   "content_scripts": [
